@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscription — PFE Track</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page" data-page="register">
+  <main class="auth-card">
+    <a class="brand" href="index.html"><span class="brand-mark">P</span>PFE Track</a>
+    <h1>Créer un compte</h1>
+    <p class="auth-subtitle">Quelques secondes suffisent pour commencer.</p>
+ 
+    <form id="register-form" novalidate>
+      <div class="form-group">
+        <label for="full_name" class="required">Nom complet</label>
+        <input type="text" id="full_name" name="full_name" class="form-control"
+               placeholder="Prénom Nom" autocomplete="name" maxlength="100" required>
+      </div>
+ 
+      <div class="form-group">
+        <label for="email" class="required">Email</label>
+        <input type="email" id="email" name="email" class="form-control"
+               placeholder="vous@exemple.com" autocomplete="email" maxlength="150" required>
+      </div>
+ 
+      <div class="form-group">
+        <label for="password" class="required">Mot de passe</label>
+        <input type="password" id="password" name="password" class="form-control"
+               placeholder="8 caractères minimum" autocomplete="new-password" required>
+        <div class="form-hint">Au moins 8 caractères.</div>
+      </div>
+ 
+      <div class="form-group">
+        <label for="confirm_password" class="required">Confirmer le mot de passe</label>
+        <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+               placeholder="Répétez le mot de passe" autocomplete="new-password" required>
+      </div>
+ 
+      <button type="submit" class="btn btn-primary btn-block">Créer mon compte</button>
+    </form>
+ 
+    <p class="auth-footer">Déjà inscrit ? <a href="login.html">Se connecter</a></p>
+  </main>
+ 
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

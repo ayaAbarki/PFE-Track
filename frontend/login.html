@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion — PFE Track</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page" data-page="login">
+  <main class="auth-card">
+    <a class="brand" href="index.html"><span class="brand-mark">P</span>PFE Track</a>
+    <h1>Connexion</h1>
+    <p class="auth-subtitle">Suivez vos candidatures de stage PFE.</p>
+ 
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label for="email" class="required">Email</label>
+        <input type="email" id="email" name="email" class="form-control"
+               placeholder="vous@exemple.com" autocomplete="email" required>
+      </div>
+ 
+      <div class="form-group">
+        <label for="password" class="required">Mot de passe</label>
+        <input type="password" id="password" name="password" class="form-control"
+               placeholder="Votre mot de passe" autocomplete="current-password" required>
+      </div>
+ 
+      <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+    </form>
+ 
+    <p class="auth-footer">Pas encore de compte ? <a href="register.html">Créer un compte</a></p>
+  </main>
+ 
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

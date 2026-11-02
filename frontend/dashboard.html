@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tableau de bord — PFE Track</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+  <div id="navbar"></div>
+ 
+  <main class="container page">
+    <div class="page-header">
+      <div>
+        <h1>Tableau de bord</h1>
+        <p>Un aperçu de vos candidatures et de vos tâches.</p>
+      </div>
+      <a class="btn btn-primary" href="applications.html">Voir les candidatures</a>
+    </div>
+ 
+    <section class="stats-grid" aria-label="Statistiques">
+      <div class="stat-card">
+        <div class="stat-icon" aria-hidden="true">📋</div>
+        <div>
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-label">Candidatures</div>
+        </div>
+      </div>
+      <div class="stat-card stat-card--info">
+        <div class="stat-icon" aria-hidden="true">📤</div>
+        <div>
+          <div class="stat-value" id="stat-sent">—</div>
+          <div class="stat-label">Envoyées</div>
+        </div>
+      </div>
+      <div class="stat-card stat-card--warning">
+        <div class="stat-icon" aria-hidden="true">⏳</div>
+        <div>
+          <div class="stat-value" id="stat-waiting">—</div>
+          <div class="stat-label">En attente de réponse</div>
+        </div>
+      </div>
+      <div class="stat-card stat-card--violet">
+        <div class="stat-icon" aria-hidden="true">🗓️</div>
+        <div>
+          <div class="stat-value" id="stat-interview">—</div>
+          <div class="stat-label">Entretiens programmés</div>
+        </div>
+      </div>
+      <div class="stat-card stat-card--success">
+        <div class="stat-icon" aria-hidden="true">✅</div>
+        <div>
+          <div class="stat-value" id="stat-accepted">—</div>
+          <div class="stat-label">Acceptées</div>
+        </div>
+      </div>
+      <div class="stat-card stat-card--danger">
+        <div class="stat-icon" aria-hidden="true">❌</div>
+        <div>
+          <div class="stat-value" id="stat-rejected">—</div>
+          <div class="stat-label">Refusées</div>
+        </div>
+      </div>
+    </section>
+ 
+    <div class="grid-2">
+      <section class="card">
+        <div class="card-header">
+          <h2>Prochaines tâches</h2>
+          <a class="btn btn-ghost btn-sm" href="tasks.html">Toutes les tâches</a>
+        </div>
+        <div id="upcoming-tasks"></div>
+      </section>
+ 
+      <section class="card">
+        <div class="card-header">
+          <h2>Activités récentes</h2>
+          <a class="btn btn-ghost btn-sm" href="applications.html">Toutes les candidatures</a>
+        </div>
+        <div id="recent-applications"></div>
+      </section>
+    </div>
+  </main>
+ 
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
