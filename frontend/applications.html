@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candidatures — PFE Track</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="applications">
+  <div id="navbar"></div>
+ 
+  <main class="container page">
+    <div class="page-header">
+      <div>
+        <h1>Candidatures</h1>
+        <p id="applications-count">&nbsp;</p>
+      </div>
+      <button type="button" class="btn btn-primary" id="add-application-btn">+ Ajouter une candidature</button>
+    </div>
+ 
+    <div class="toolbar">
+      <div class="search">
+        <label for="search-input" class="sr-only">Rechercher</label>
+        <input type="search" id="search-input" class="form-control"
+               placeholder="Rechercher par entreprise ou poste...">
+      </div>
+      <div>
+        <label for="status-filter" class="sr-only">Filtrer par statut</label>
+        <select id="status-filter" class="form-control"></select>
+      </div>
+    </div>
+ 
+    <div id="applications-list"></div>
+  </main>
+ 
+  <!-- Modale d'ajout / modification -->
+  <div class="modal-overlay hidden" id="application-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="application-modal-title">
+      <form id="application-form" novalidate>
+        <div class="modal-header">
+          <h2 id="application-modal-title">Ajouter une candidature</h2>
+          <button type="button" class="modal-close" data-close-modal aria-label="Fermer">&times;</button>
+        </div>
+ 
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company_name" class="required">Entreprise</label>
+              <input type="text" id="company_name" name="company_name" class="form-control" maxlength="150" required>
+            </div>
+            <div class="form-group">
+              <label for="position" class="required">Poste</label>
+              <input type="text" id="position" name="position" class="form-control" maxlength="150" required>
+            </div>
+          </div>
+ 
+          <div class="form-row">
+            <div class="form-group">
+              <label for="domain" class="required">Domaine</label>
+              <input type="text" id="domain" name="domain" class="form-control" maxlength="100"
+                     placeholder="Ex. Développement web" required>
+            </div>
+            <div class="form-group">
+              <label for="application_date" class="required">Date de candidature</label>
+              <input type="date" id="application_date" name="application_date" class="form-control" required>
+            </div>
+          </div>
+ 
+          <div class="form-row">
+            <div class="form-group">
+              <label for="status" class="required">Statut</label>
+              <select id="status" name="status" class="form-control" required></select>
+            </div>
+            <div class="form-group">
+              <label for="contact_email">Email de contact</label>
+              <input type="email" id="contact_email" name="contact_email" class="form-control"
+                     maxlength="150" placeholder="recrutement@entreprise.com">
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label for="offer_url">Lien de l'offre</label>
+            <input type="url" id="offer_url" name="offer_url" class="form-control"
+                   maxlength="255" placeholder="https://...">
+          </div>
+ 
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" class="form-control"></textarea>
+          </div>
+        </div>
+ 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Annuler</button>
+          <button type="submit" class="btn btn-primary" id="application-submit">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+ 
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/applications.js"></script>
+</body>
+</html>
