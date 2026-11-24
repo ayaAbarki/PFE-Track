@@ -8,7 +8,7 @@
 (function (global) {
   "use strict";
 
-  const API_BASE_URL = "http://localhost/pfe-track/backend/api";
+  const API_BASE_URL = "../backend/api"; 
   const REQUEST_TIMEOUT_MS = 15000;
   const LOGIN_PAGE = "login.html";
 
