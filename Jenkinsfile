@@ -1,8 +1,11 @@
 pipeline {
-    agent any
+    agent any  // Le pipleine peut s'executer sur n'importe quel agent disponible 
 
     options { skipDefaultCheckout(true) }
-    triggers { pollSCM('* * * * *') }
+
+    // mise en place d'un trigger pour declencher le pipeline automatiquement toutes les minutes si un push est detecte sur le depot Git
+    // min heure, jour, mois, jour de la semaine
+    triggers { pollSCM('* * * * *') }  
 
     parameters {
         booleanParam(name: 'SIMULER_ECHEC_PROD', defaultValue: false,
@@ -10,7 +13,10 @@ pipeline {
     }
 
     environment {
-        IMAGE     = 'localhost:5000/pfe-track'
+        // nom de l'image dans le registre local
+        IMAGE     = 'localhost:5000/pfe-track' 
+
+        // tag de l'image (numero de build Jenkins)
         IMAGE_TAG = "${env.BUILD_NUMBER}"
     }
 
@@ -22,7 +28,7 @@ pipeline {
         stage('04 Recuperation du code') {
             steps {
                 checkout scm
-                bat 'git log -1 --oneline'
+                bat 'git log -1 --oneline' // affichage du dernier commit
             }
         }
         stage('05 Installation des dependances') {
