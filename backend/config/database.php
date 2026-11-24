@@ -4,10 +4,10 @@
 
 function getConnection(): PDO
 {
-    $host     = 'localhost';
-    $dbname   = 'pfe_track';
-    $username = 'root';   // utilisateur par défaut de XAMPP
-    $password = '';       // vide par défaut dans XAMPP
+    $host     = getenv('DB_HOST') ?: 'localhost';
+    $dbname   = getenv('DB_NAME') ?: 'pfe_track';
+    $username = getenv('DB_USER') ?: 'root';
+    $password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 
     $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 
