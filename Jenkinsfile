@@ -10,7 +10,6 @@ pipeline {
     }
 
     environment {
-        PATH      = "C:\\Users\\HP\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin"
         IMAGE     = 'localhost:5000/pfe-track'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
     }
