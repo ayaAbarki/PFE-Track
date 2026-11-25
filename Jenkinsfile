@@ -85,8 +85,8 @@ pipeline {
         }
         stage('14 Tests post-deploiement') {
             steps {
-                bat 'curl.exe -f -s --retry 15 --retry-delay 4 --retry-connrefused --retry-all-errors http://localhost:8081/pfe-track/backend/api/test.php | findstr connected'
-                bat 'curl.exe -f -s -o nul http://localhost:8081/pfe-track/frontend/login.html'
+                bat 'curl.exe -f -s --retry 15 --retry-delay 4 --retry-connrefused --retry-all-errors http://localhost:8091/pfe-track/backend/api/test.php | findstr connected'
+                bat 'curl.exe -f -s -o nul http://localhost:8091/pfe-track/frontend/login.html'
             }
         }
         stage('15 Validation / approbation') {
