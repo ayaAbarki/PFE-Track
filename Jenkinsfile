@@ -78,7 +78,7 @@ pipeline {
         }
         stage('13 Deploiement en staging') {
             steps {
-                withEnv(['APP_PORT=8081']) {
+                withEnv(['APP_PORT=8091']) {
                     bat 'docker-compose -p pfe-staging up -d'
                 }
             }
