@@ -1,8 +1,11 @@
 pipeline {
-    agent any
+    agent any  // Le pipleine peut s'executer sur n'importe quel agent disponible 
 
     options { skipDefaultCheckout(true) }
-    triggers { pollSCM('* * * * *') }
+
+    // mise en place d'un trigger pour declencher le pipeline automatiquement toutes les minutes si un push est detecte sur le depot Git
+    // min heure, jour, mois, jour de la semaine
+    triggers { pollSCM('* * * * *') }  
 
     parameters {
         booleanParam(name: 'SIMULER_ECHEC_PROD', defaultValue: false,
@@ -10,7 +13,10 @@ pipeline {
     }
 
     environment {
-        IMAGE     = 'localhost:5000/pfe-track'
+        // nom de l'image dans le registre local
+        IMAGE     = 'localhost:5000/pfe-track' 
+
+        // tag de l'image (numero de build Jenkins)
         IMAGE_TAG = "${env.BUILD_NUMBER}"
     }
 
@@ -22,7 +28,7 @@ pipeline {
         stage('04 Recuperation du code') {
             steps {
                 checkout scm
-                bat 'git log -1 --oneline'
+                bat 'git log -1 --oneline' // affichage du dernier commit
             }
         }
         stage('05 Installation des dependances') {
@@ -73,7 +79,7 @@ pipeline {
         stage('13 Deploiement en staging') {
             steps {
                 withEnv(['APP_PORT=8081']) {
-                    bat 'docker compose -p pfe-staging up -d'
+                    bat 'docker-compose -p pfe-staging up -d'
                 }
             }
         }
@@ -93,7 +99,7 @@ pipeline {
         stage('16 Deploiement en production') {
             steps {
                 withEnv(['APP_PORT=8082']) {
-                    bat 'docker compose -p pfe-prod up -d'
+                    bat 'docker-compose -p pfe-prod up -d'
                 }
             }
         }
@@ -117,9 +123,9 @@ pipeline {
         }
         stage('18 Supervision (monitoring)') {
             steps {
-                bat 'docker compose -p pfe-prod ps'
+                bat 'docker-compose -p pfe-prod ps'
                 bat 'docker stats --no-stream'
-                bat 'docker compose -p pfe-prod logs --tail 5 app'
+                bat 'docker-compose -p pfe-prod logs --tail 5 app'
             }
         }
         stage('19 Rollback en cas d echec') {
@@ -129,7 +135,7 @@ pipeline {
                     def prev = fileExists('last_good.txt') ? readFile('last_good.txt').trim() : 'latest'
                     echo "ROLLBACK : retour a la version ${prev}"
                     withEnv(["IMAGE_TAG=${prev}", 'APP_PORT=8082']) {
-                        bat 'docker compose -p pfe-prod up -d'
+                        bat 'docker-compose -p pfe-prod up -d'
                     }
                     unstable('Rollback effectue')
                 }
